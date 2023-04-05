@@ -2,16 +2,22 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Demo from './computnent/Demo';
-
+import DemoClass from './Component/DemoClass';
+import Home from './Component/HomeComponent/Home';
+import DataBinding from './DataBinding/DataBinding';
+import HandleEvent from './HandleEvent/HandleEvent';
+import BaiTapChonXe from './State/BaiTapChonXe';
+import Demologin from './State/Demologin';
+import DemoState from './State/DemoState';
 // Nội dung toàn bộ website sẽ được chứa trong hàm render
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  <div>
-  <Demo></Demo>
-  <Demo></Demo>
-  <Demo></Demo>
-  <Demo></Demo>
+ {/* <Home></Home> */}
+ {/* <DataBinding></DataBinding> */}
+ {/* <HandleEvent></HandleEvent> */}
+ {/* <Demologin></Demologin> */}
+ <DemoState></DemoState>
  </div>
 );
 
