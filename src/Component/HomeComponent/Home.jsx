@@ -7,7 +7,7 @@ import Footer from "./Footer";
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="container" style={{paddingTop:100}}>
         <Header></Header>
         <div className="d-flex">
             {/* 

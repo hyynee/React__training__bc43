@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Detail from "./Detail";
+import Card from "./Card";
 
 const dataPhone = [
   {
@@ -45,13 +46,16 @@ export default class ProductDetail extends Component {
     let arrPhone = dataPhone.map((item) => {
       return (
         <div className="col-4 mt-2" key={item.maSP}>
-        <Detail phone={item} xemChiTiet={this.xemChiTiet}></Detail>
+          <Detail
+            ThemGioHang={this.themGioHang}
+            phone={item}
+            xemChiTiet={this.xemChiTiet}
+          ></Detail>
         </div>
       );
     });
     return arrPhone;
   };
-
   state = {
     spChiTiet: {
       maSP: 1,
@@ -65,19 +69,95 @@ export default class ProductDetail extends Component {
       giaBan: 5700000,
       hinhAnh: "./img/img/vsphone.jpg",
     },
+    arrGioHang: [
+      {
+        maSP: 1,
+        tenSP: "VinSmart Live",
+        giaBan: 5700000,
+        hinhAnh: "./img/img/vsphone.jpg",
+        soLuong: 2,
+      },
+    ],
   };
+  /*  STATE ĐẶT Ở COMPONENT NÀO THÌ HÀM setState viết ở compunent đó */
+  themGioHang = (spClick) => {
+    // console.log(spClick)
+    spClick = { ...spClick, soLuong: 1 };
 
-  xemChiTiet = (spClick) => {
-//   console.log(spClick)
+    // kiểm tra sản phẩm đã có trong giỏ hàng hay chưa? Nếu có rồi thì lấy ra tăng số lượng. Chưa có thì lấy ra push vào
+    let gioHang = this.state.arrGioHang;
+    let spGH = gioHang.find((item) => item.maSP === spClick.maSP);
+    if (spGH) {
+      spGH.soLuong += 1;
+    } else {
+      gioHang.push(spClick);
+    }
+
+    // Thêm sản phẩm vô giỏ hàng
+    // this.state.arrGioHang.push(spClick);
+    // Gán lại state = sttate mới
     this.setState({
-        spChiTiet: spClick
+      arrGioHang: gioHang,
+    });
+  };
+  // delete
+  xoaSanPham = (maSP) => {
+    console.log(maSP);
+    let index = this.state.arrGioHang.findIndex((item) => item.maSP === maSP);
+    if (index !== -1) {
+      this.state.arrGioHang.splice(index, 1);
+    }
+    this.setState({
+      arrGioHang: this.state.arrGioHang,
+    });
+  };
+  tangGiamSL = (maSP,SL) => {
+    console.log(maSP,SL);
+    // tìm ra sản phẩm được click dựa vào mã
+    let SP = this.state.arrGioHang.find((item) => item.maSP === maSP);
+    if(SP) {
+      SP.soLuong += SL;
+      if(SP.soLuong < 1) {
+        if(window.confirm('DCMMM M NGU VÃI LÀM MẸ GÌ MUA RỒI MÀ CÒN CHO NÓ VỀ 0???')){
+          this.xoaSanPham(SP.maSP);
+        }
+        else {
+          SP.soLuong -= SL;
+        }
+      }
+    }
+    // cập nhật state
+    this.setState({
+      arrGioHang: this.state.arrGioHang
     })
   }
-render() {
-      let {maSP,tenSP,manHinh,heDieuHanh,cameraTruoc,cameraSau,ram,rom,giaBan,hinhAnh} = this.state.spChiTiet;
+  xemChiTiet = (spClick) => {
+    //   console.log(spClick)
+    this.setState({
+      spChiTiet: spClick,
+    });
+  };
+  render() {
+    let {
+      maSP,
+      tenSP,
+      manHinh,
+      heDieuHanh,
+      cameraTruoc,
+      cameraSau,
+      ram,
+      rom,
+      giaBan,
+      hinhAnh,
+    } = this.state.spChiTiet;
     return (
       <div className="container">
         <h3>Danh sách sản phẩm</h3>
+        <Card
+          xoaSanPham={this.xoaSanPham}
+          tangGiamSL={this.tangGiamSL}
+          arrGioHang={this.state.arrGioHang}
+        ></Card>
         <div className="row">
           {this.renderPhone()}
           {/* <div className="col-4 mt-2">

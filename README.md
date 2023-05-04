@@ -15,3 +15,23 @@
         </p>
     </li>
 </ul>
+
+# Các bước khi thực hiện 1 task hoặc chức năng với reactjs
+B1: Dàn layout chia component
+B2: Xác định dữ liệu thay đổi trên giao diện(state):
++String?
++Boolean
++Number
++Object
++Aray -> + Number, string, object
+Componet chứa thuộc tính state sẽ cần 2 yếu tố:
++ Chứa UI của state biding ra
++ Chứa nút xử lý làm thay đổi state
+B3:Binding state:
++ Trực tiếp thì binding trực tiếp = {}
++ Gián tiếp 
+B4:SetState
+
+
+# Mounting
+

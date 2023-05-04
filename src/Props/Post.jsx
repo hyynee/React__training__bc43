@@ -16,4 +16,5 @@ export default class Post extends Component {
   }
 }
 
-// ReactElement: <
+// ReactElement: <Thẻ/>
+//ReactComponent: import Component from '...'

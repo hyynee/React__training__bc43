@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 
 export default class DemoClass extends Component {
-  // Phương thức hiển thị giao diện của component
+  phuongThucA() {}
+
+  //Phương thức hiển thị giao diện của component
   render() {
-    // Nội dung component sẽ chứa trong 1 thẻ bất kỳ
+    //Nội dung component sẽ chứa trong 1 thẻ bất kì
     return (
       <div>
-        <button className="btn btn-success">Nội dung component</button>
+        <button className="btn btn-success"> Nội dung component </button>
+
         <div className="card text-left">
           <img className="card-img-top" src="holder.js/100px180/" alt />
           <div className="card-body">
